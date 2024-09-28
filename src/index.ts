@@ -1,25 +1,23 @@
-import express, { Express, Request, Response } from 'express';
-import { routerV1 } from './routers/v1/app';
+import express, { Express, Request, Response } from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+import { authRouters } from './routers/auth.routers'
 
-import dotenv from 'dotenv';
-import cors from 'cors';
+dotenv.config()
+const port = process.env.PORT || 3000
 
-dotenv.config();
-const port = process.env.PORT || 3000;
+const app: Express = express()
 
-const app: Express = express();
-
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: '*' }))
+app.use('/api/auth', authRouters)
 
 app.get('/', (req: Request, res: Response) => {
-  res.json({
+  res.send({
     status: 200,
-    message: 'Server is running successfully!',
-  });
-});
-
-app.use('/api/v1', routerV1);
+    message: 'Server is running successfully!'
+  })
+})
 
 app.listen(port, () =>
   console.log(`app is listening at http://localhost:${port}`)
-);
+)
