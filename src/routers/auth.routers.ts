@@ -1,12 +1,12 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response, Router } from "express";
 
-const app: Router = Router()
+const app: Router = Router();
 
-app.get('/', (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.json({
     status: 200,
-    message: ''
-  })
-})
+    message: "",
+  });
+});
 
-export const authRouters = app
+export const authRouters = app;
